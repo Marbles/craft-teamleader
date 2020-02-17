@@ -1,0 +1,26 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+{#
+/**
+ * Teamleader plugin for Craft CMS 3.x
+ *
+ * Teamleader Settings.twig
+ *
+ * @author    Kjell Knapen
+ * @copyright Copyright (c) 2020 Kjell Knapen
+ * @link      https://knapen.dev
+ * @package   Teamleader
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% do view.registerAssetBundle("kjellknapencraftteamleader\\teamleader\\assetbundles\\teamleader\\TeamleaderAsset") %}
+
+{{ forms.textField({
+    label: 'Some Field',
+    instructions: 'Enter some setting here.',
+    id: 'someAttribute',
+    name: 'someAttribute',
+    value: settings['someAttribute']})
+}}
