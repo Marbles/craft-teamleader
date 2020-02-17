@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2020 Kjell Knapen
  */
 
-namespace kjellknapencraftteamleader\teamleader;
+namespace kjellknapen\teamleader;
 
 use kjellknapencraftteamleader\teamleader\services\Teamleader as TeamleaderService;
 use kjellknapencraftteamleader\teamleader\models\Settings;

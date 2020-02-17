@@ -1,5 +1,5 @@
 {
-    "name": "kjellknapencraftteamleader/teamleader",
+    "name": "kjellknapen/craft-teamleader",
     "description": "A connection between craft commerce and teamleader to have an easy flow of facturation",
     "type": "craft-plugin",
     "version": "1.0.0",
@@ -11,8 +11,8 @@
         "teamleader"
     ],
     "support": {
-        "docs": "https://github.com/kjellknapen/teamleader/blob/master/README.md",
-        "issues": "https://github.com/kjellknapen/teamleader/issues"
+        "docs": "https://github.com/kjellknapen/craft-teamleader/blob/master/README.md",
+        "issues": "https://github.com/kjellknapen/craft-teamleader/issues"
     },
     "license": "MIT",
     "authors": [
@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-          "kjellknapencraftteamleader\\teamleader\\": "src/"
+          "kjellknapen\\teamleader\\": "src/"
         }
     },
     "extra": {
@@ -34,10 +34,10 @@
         "handle": "teamleader",
         "hasCpSettings": true,
         "hasCpSection": true,
-        "changelogUrl": "https://raw.githubusercontent.com/kjellknapen/teamleader/master/CHANGELOG.md",
+        "changelogUrl": "https://raw.githubusercontent.com/kjellknapen/craft-teamleader/master/CHANGELOG.md",
         "components": {
-            "teamleader": "kjellknapencraftteamleader\\teamleader\\services\\Teamleader"
+            "teamleader": "kjellknapen\\teamleader\\services\\Teamleader"
         },
-        "class": "kjellknapencraftteamleader\\teamleader\\Teamleader"
+        "class": "kjellknapen\\teamleader\\Teamleader"
     }
 }

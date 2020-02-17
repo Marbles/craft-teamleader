@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2020 Kjell Knapen
  */
 
-namespace kjellknapencraftteamleader\teamleader\services;
+namespace kjellknapen\teamleader\services;
 
-use kjellknapencraftteamleader\teamleader\Teamleader;
+use kjellknapen\teamleader\Teamleader as TeamleaderPlugin;
 
 use Craft;
 use craft\base\Component;
@@ -47,7 +47,7 @@ class Teamleader extends Component
     {
         $result = 'something';
         // Check our Plugin's settings for `someAttribute`
-        if (Teamleader::$plugin->getSettings()->someAttribute) {
+        if (TeamleaderPlugin::$plugin->getSettings()->someAttribute) {
         }
 
         return $result;

@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2020 Kjell Knapen
  */
 
-namespace kjellknapencraftteamleader\teamleader\models;
+namespace kjellknapen\teamleader\models;
 
-use kjellknapencraftteamleader\teamleader\Teamleader;
+use kjellknapen\teamleader\Teamleader;
 
 use Craft;
 use craft\base\Model;

@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2020 Kjell Knapen
  */
 
-namespace kjellknapencraftteamleader\teamleader\assetbundles\Teamleader;
+namespace kjellknapen\teamleader\assetbundles\Teamleader;
 
 use Craft;
 use craft\web\AssetBundle;
@@ -43,7 +43,7 @@ class TeamleaderAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@kjellknapencraftteamleader/teamleader/assetbundles/teamleader/dist";
+        $this->sourcePath = "@kjellknapen/teamleader/assetbundles/teamleader/dist";
 
         // define the dependencies
         $this->depends = [
