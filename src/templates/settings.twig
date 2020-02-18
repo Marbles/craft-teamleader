@@ -15,13 +15,28 @@
 
 {% import "_includes/forms" as forms %}
 
-{% do 
-    view.registerAssetBundle("kjellknapen\\teamleader\\assetbundles\\teamleader\\TeamleaderAsset") %}
+{% do view.registerAssetBundle("marbles\\teamleader\\assetbundles\\teamleader\\TeamleaderAsset") %}
 
 {{ forms.textField({
-    label: 'Some Field',
-    instructions: 'Enter some setting here.',
-    id: 'someAttribute',
-    name: 'someAttribute',
-    value: settings['someAttribute']})
+    label: 'Client Id',
+    instructions: 'Put your teamleader client id here.',
+    id: 'clientId',
+    name: 'clientId',
+    value: settings['clientId']})
+}}
+
+{{ forms.textField({
+    label: 'Client Secret',
+    instructions: 'Put your teamleader client secret here.',
+    id: 'clientSecret',
+    name: 'clientSecret',
+    value: settings['clientSecret']})
+}}
+
+{{ forms.textField({
+    label: 'Redirect Uri',
+    instructions: 'Put your teamleader redirect uri here.',
+    id: 'redirectUri',
+    name: 'redirectUri',
+    value: settings['redirectUri']})
 }}

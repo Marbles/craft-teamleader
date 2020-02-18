@@ -1,5 +1,5 @@
 {
-    "name": "kjellknapen/craft-teamleader",
+    "name": "marbles/craft-teamleader",
     "description": "A connection between craft commerce and teamleader to have an easy flow of facturation",
     "type": "craft-plugin",
     "version": "1.0.0",
@@ -11,8 +11,8 @@
         "teamleader"
     ],
     "support": {
-        "docs": "https://github.com/kjellknapen/craft-teamleader/blob/master/README.md",
-        "issues": "https://github.com/kjellknapen/craft-teamleader/issues"
+        "docs": "https://github.com/Marbles/craft-teamleader/blob/master/README.md",
+        "issues": "https://github.com/Marbles/craft-teamleader/issues"
     },
     "license": "MIT",
     "authors": [
@@ -22,11 +22,12 @@
         }
     ],
     "require": {
-        "craftcms/cms": "^3.0.0-RC1"
+        "craftcms/cms": "^3.0.0-RC1",
+        "janhenkes/teamleader-php-sdk": "^2.0"
     },
     "autoload": {
         "psr-4": {
-          "kjellknapen\\teamleader\\": "src/"
+          "marbles\\teamleader\\": "src/"
         }
     },
     "extra": {
@@ -34,10 +35,10 @@
         "handle": "teamleader",
         "hasCpSettings": true,
         "hasCpSection": true,
-        "changelogUrl": "https://raw.githubusercontent.com/kjellknapen/craft-teamleader/master/CHANGELOG.md",
+        "changelogUrl": "https://raw.githubusercontent.com/Marbles/craft-teamleader/master/CHANGELOG.md",
         "components": {
-            "teamleader": "kjellknapen\\teamleader\\services\\Teamleader"
+            "teamleader": "marbles\\teamleader\\services\\TeamleaderApi"
         },
-        "class": "kjellknapen\\teamleader\\Teamleader"
+        "class": "marbles\\teamleader\\TeamleaderApi"
     }
 }

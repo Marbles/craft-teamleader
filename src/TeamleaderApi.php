@@ -8,15 +8,19 @@
  * @copyright Copyright (c) 2020 Kjell Knapen
  */
 
-namespace kjellknapen\teamleader;
+namespace marbles\teamleader;
 
-use kjellknapencraftteamleader\teamleader\services\Teamleader as TeamleaderService;
-use kjellknapencraftteamleader\teamleader\models\Settings;
+use marbles\teamleader\services\TeamleaderApi as TeamleaderService;
+use marbles\teamleader\models\Settings;
+use marbles\teamleader\assetbundles\Teamleader\TeamleaderAsset;
 
 use Craft;
 use craft\base\Plugin;
 use craft\services\Plugins;
 use craft\events\PluginEvent;
+use craft\web\UrlManager;
+use craft\events\RegisterUrlRulesEvent;
+use craft\commerce\elements\Order;
 
 use yii\base\Event;
 
@@ -38,18 +42,35 @@ use yii\base\Event;
  * @property  Settings $settings
  * @method    Settings getSettings()
  */
-class Teamleader extends Plugin
+class TeamleaderApi extends Plugin
 {
     // Static Properties
     // =========================================================================
 
     /**
      * Static property that is an instance of this plugin class so that it can be accessed via
-     * Teamleader::$plugin
+     * TeamleaderApi::$plugin
      *
-     * @var Teamleader
+     * @var TeamleaderApi
      */
     public static $plugin;
+
+
+    /**
+     * Static property that is an instance of this plugin class so that it can be accessed via
+     * TeamleaderApi::$connection
+     *
+     * @var \Teamleader\Connection
+     */
+    public static $connection;
+
+    /**
+     * Static property that is an instance of this plugin class so that it can be accessed via
+     * TeamleaderApi::$client
+     *
+     * @var \Teamleader\Client
+     */
+    public static $client;
 
     // Public Properties
     // =========================================================================
@@ -79,6 +100,15 @@ class Teamleader extends Plugin
     {
         parent::init();
         self::$plugin = $this;
+        self::$connection = new \Teamleader\Connection();
+
+        // Set connection variables
+        self::$connection->setClientId($this->getSettings()->clientId);
+        self::$connection->setClientSecret($this->getSettings()->clientSecret);
+        self::$connection->setRedirectUrl($this->getSettings()->redirectUri);
+
+        self::$client = new \Teamleader\Client(self::$connection);
+
 
         // Do something after we're installed
         Event::on(
@@ -91,24 +121,33 @@ class Teamleader extends Plugin
             }
         );
 
-/**
- * Logging in Craft involves using one of the following methods:
- *
- * Craft::trace(): record a message to trace how a piece of code runs. This is mainly for development use.
- * Craft::info(): record a message that conveys some useful information.
- * Craft::warning(): record a warning message that indicates something unexpected has happened.
- * Craft::error(): record a fatal error that should be investigated as soon as possible.
- *
- * Unless `devMode` is on, only Craft::warning() & Craft::error() will log to `craft/storage/logs/web.log`
- *
- * It's recommended that you pass in the magic constant `__METHOD__` as the second parameter, which sets
- * the category to the method (prefixed with the fully qualified class name) where the constant appears.
- *
- * To enable the Yii debug toolbar, go to your user account in the AdminCP and check the
- * [] Show the debug toolbar on the front end & [] Show the debug toolbar on the Control Panel
- *
- * http://www.yiiframework.com/doc-2.0/guide-runtime-logging.html
- */
+        if (Craft::$app->getRequest()->getIsCpRequest()) {
+            Craft::$app->getView()->registerAssetBundle(TeamleaderAsset::class);
+        }
+
+        Event::on(
+            UrlManager::class,
+            UrlManager::EVENT_REGISTER_CP_URL_RULES,
+            function(RegisterUrlRulesEvent $event) {
+                $event->rules['teamleader'] = 'teamleader/teamleader/index';
+                $event->rules['teamleader/settings'] = 'teamleader/teamleader/settings';
+                $event->rules['teamleader/connect'] = 'teamleader/connect/index';
+                $event->rules['teamleader/connect/integration'] = 'teamleader/connect/set-connection';
+            }
+        );
+
+        Event::on(Order::class, Order::EVENT_AFTER_COMPLETE_ORDER, function(Event $e) {
+            // @var Order $order
+            $order = $e->sender;
+
+            Craft::error(
+                'Create invoice triggerd',
+                __METHOD__
+            );
+
+        });
+
+
         Craft::info(
             Craft::t(
                 'teamleader',
@@ -132,6 +171,29 @@ class Teamleader extends Plugin
         return new Settings();
     }
 
+    public function getCpNavItem()
+    {
+        $navItem = parent::getCpNavItem();
+
+        $navItem['label'] = 'Teamleader';
+
+        $navItem['subnav'] = [
+            'general' => [
+                'label' => Craft::t('teamleader', 'General'),
+                'url' => 'teamleader'
+            ],
+            'connect' => [
+                'label' => Craft::t('teamleader', 'Connect'),
+                'url' => 'teamleader/connect'
+            ],
+            'settings' => [
+                'label' => Craft::t('teamleader', 'Settings'),
+                'url' => 'teamleader/settings'
+            ],
+        ];
+
+        return $navItem;
+    }
     /**
      * Returns the rendered settings HTML, which will be inserted into the content
      * block on the settings page.

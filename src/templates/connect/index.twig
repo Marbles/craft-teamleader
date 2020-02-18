@@ -16,8 +16,8 @@
 {% extends "_layouts/cp" %}
 {% import "_includes/forms" as forms %}
 
-{% do view.registerAssetBundle("kjellknapencraftteamleader\\teamleader\\assetbundles\\teamleader\\TeamleaderAsset") %}
-{% do view.registerAssetBundle("kjellknapencraftteamleader\\teamleader\\assetbundles\\teamleadercpsection\\TeamleaderCPSectionAsset") %}
+{% do view.registerAssetBundle("marbles\\teamleader\\assetbundles\\teamleader\\TeamleaderAsset") %}
+{% do view.registerAssetBundle("marbles\\teamleader\\assetbundles\\teamleadercpsection\\TeamleaderCPSectionAsset") %}
 
 {# Link for the ? icon at the bottom of the page #}
 {% set docsUrl = "https://github.com/kjellknapen/teamleader/blob/master/README.md" %}
@@ -29,7 +29,7 @@
 {% set pluginCpUrl = url('teamleader') %}
 
 {# Get a URL to an image in our AssetBundle #}
-{% set iconUrl = view.getAssetManager().getPublishedUrl('@kjellknapencraftteamleader/teamleader/assetbundles/teamleadercpsection/dist', true) ~ '/img/Teamleader-icon.svg' %}
+{% set iconUrl = view.getAssetManager().getPublishedUrl('@marbles/teamleader/assetbundles/teamleadercpsection/dist', true) ~ '/img/Teamleader-icon.svg' %}
 
 {# Content that should appear in the page header#}
 {% set extraPageHeaderHtml %}
@@ -40,7 +40,11 @@
 
 {# The content of the CP Section#}
 {% set content %}
-    <h2>{{ "Teamleader CP Section body goes here"|t('teamleader') }}</h2>
-    <img src="{{ iconUrl }}" height="64" width="64" />
+    <h2>{{ "Make a connection with teamleader"|t('teamleader') }}</h2>
+    {% if token is not empty %}
+        <p>{{ "Connection is allready established"|t('teamleader') }}</p>
+    {% else %}
+        <a href="https://app.teamleader.eu/oauth2/authorize?client_id={{ settings['clientId'] }}&response_type=code&redirect_uri={{ settings['redirectUri'] }}">{{ "Connect Teamleader"|t('teamleader') }}</a>
+    {% endif %}
     <p class="textline"></p>
 {% endset %}

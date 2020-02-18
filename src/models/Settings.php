@@ -8,9 +8,9 @@
  * @copyright Copyright (c) 2020 Kjell Knapen
  */
 
-namespace kjellknapen\teamleader\models;
+namespace marbles\teamleader\models;
 
-use kjellknapen\teamleader\Teamleader;
+use marbles\teamleader\Teamleader;
 
 use Craft;
 use craft\base\Model;
@@ -39,7 +39,21 @@ class Settings extends Model
      *
      * @var string
      */
-    public $someAttribute = 'Some Default';
+    public $clientId = '';
+
+    /**
+     * Some field model attribute
+     *
+     * @var string
+     */
+    public $clientSecret = '';
+
+    /**
+     * Some field model attribute
+     *
+     * @var string
+     */
+    public $redirectUri = '';
 
     // Public Methods
     // =========================================================================
@@ -57,8 +71,9 @@ class Settings extends Model
     public function rules()
     {
         return [
-            ['someAttribute', 'string'],
-            ['someAttribute', 'default', 'value' => 'Some Default'],
+            ['clientId', 'string'],
+            ['clientSecret', 'string'],
+            ['redirectUri', 'string'],
         ];
     }
 }

@@ -8,7 +8,7 @@
  * @copyright Copyright (c) 2020 Kjell Knapen
  */
 
-namespace kjellknapen\teamleader\assetbundles\teamleadercpsection;
+namespace marbles\teamleader\assetbundles\teamleadercpsection;
 
 use Craft;
 use craft\web\AssetBundle;
@@ -43,7 +43,7 @@ class TeamleaderCPSectionAsset extends AssetBundle
     public function init()
     {
         // define the path that your publishable resources live
-        $this->sourcePath = "@kjellknapen/teamleader/assetbundles/teamleadercpsection/dist";
+        $this->sourcePath = "@marbles/teamleader/assetbundles/teamleadercpsection/dist";
 
         // define the dependencies
         $this->depends = [

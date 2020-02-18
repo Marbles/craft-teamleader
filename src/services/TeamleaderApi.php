@@ -8,12 +8,14 @@
  * @copyright Copyright (c) 2020 Kjell Knapen
  */
 
-namespace kjellknapen\teamleader\services;
+namespace marbles\teamleader\services;
 
-use kjellknapen\teamleader\Teamleader as TeamleaderPlugin;
+use marbles\teamleader\TeamleaderApi as TeamleaderPlugin;
 
 use Craft;
 use craft\base\Component;
+use craft\commerce\elements\Order;
+
 
 /**
  * Teamleader Service
@@ -28,7 +30,7 @@ use craft\base\Component;
  * @package   Teamleader
  * @since     1.0.0
  */
-class Teamleader extends Component
+class TeamleaderApi extends Component
 {
     // Public Methods
     // =========================================================================
@@ -39,17 +41,15 @@ class Teamleader extends Component
      *
      * From any other plugin file, call it like this:
      *
-     *     Teamleader::$plugin->teamleader->exampleService()
+     *     TeamleaderApi::$plugin->teamleaderapi->exampleService()
      *
      * @return mixed
      */
-    public function exampleService()
+    public function createInvoice(Order $order)
     {
-        $result = 'something';
-        // Check our Plugin's settings for `someAttribute`
-        if (TeamleaderPlugin::$plugin->getSettings()->someAttribute) {
-        }
-
-        return $result;
+        Craft::info(
+            'Create invoice triggerd',
+            __METHOD__
+        );
     }
 }
