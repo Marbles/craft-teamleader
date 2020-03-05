@@ -41,5 +41,15 @@
 {# The content of the CP Section#}
 {% set content %}
     <h2>{{ "Teamleader CP Section body goes here"|t('teamleader') }}</h2>
-    <p class="textline"></p>
+    {% for item in products %}
+        <p>{{item.id}} - {{item.name}}</p>
+    {% endfor %}
+    <br><br>
+    {% for item in departments %}
+        <p>{{item.id}} - {{item.name}}</p>
+    {% endfor %}
+    <br><br>
+    {% for item in taxRates %}
+        <p>{{item.id}} - {{item.description}}</p>
+    {% endfor %}
 {% endset %}

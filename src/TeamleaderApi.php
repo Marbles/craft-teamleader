@@ -140,11 +140,9 @@ class TeamleaderApi extends Plugin
             // @var Order $order
             $order = $e->sender;
 
-            Craft::error(
-                'Create invoice triggerd',
-                __METHOD__
-            );
+            $company = $this->teamleader->createCompany($order);
 
+            $invoice = $this->teamleader->createInvoice($order, $company);
         });
 
 

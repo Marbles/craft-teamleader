@@ -30,9 +30,16 @@ class ConnectController extends Controller
      */
     public function actionIndex()
     {
+        $token = '';
+        try {
+            $token = TeamleaderApi::$connection->getAccessToken();
+        } catch (\Exception $e) {
+
+        }
+
         return $this->renderTemplate('teamleader/connect/index', [
             'settings' => TeamleaderApi::$plugin->getSettings(),
-            'token' => TeamleaderApi::$connection->getAccessToken()
+            'token' => $token
         ]);
     }
 
