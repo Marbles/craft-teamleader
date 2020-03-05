@@ -33,7 +33,6 @@ class TeamleaderController extends Controller
         $this->renderTemplate('teamleader/index', [
             'products' => TeamleaderApi::$client->product()->get(),
             'departments' => TeamleaderApi::$client->department()->get(),
-            'taxRates' => TeamleaderApi::$client->taxRate()->get(),
         ]);
     }
 
