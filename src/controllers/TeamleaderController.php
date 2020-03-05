@@ -30,9 +30,17 @@ class TeamleaderController extends Controller
      */
     public function actionIndex()
     {
+        $products = [];
+        $departments = [];
+        try {
+            $products = TeamleaderApi::$client->product()->get();
+            $departments = TeamleaderApi::$client->department()->get();
+        } catch (\Exception $e) {
+
+        }
         $this->renderTemplate('teamleader/index', [
-            'products' => TeamleaderApi::$client->product()->get(),
-            'departments' => TeamleaderApi::$client->department()->get(),
+            'products' => $products,
+            'departments' => $departments,
         ]);
     }
 
