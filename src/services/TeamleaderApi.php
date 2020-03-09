@@ -103,6 +103,7 @@ class TeamleaderApi extends Component
     {
         $client = TeamleaderPlugin::$client;
         $billing = $order->billingAddress;
+        $vat = $billing->businessTaxId;
 
         $filter = new \Teamleader\Actions\Attributes\Filter([
             'email'  => [
@@ -113,9 +114,9 @@ class TeamleaderApi extends Component
 
         $company = $client->company()->getAll($filter);
 
-        $vatCheck = $this->checkVat($billing->businessTaxId);
+        $vatCheck = $this->checkVat($vat);
 
-        if (!$vatCheck->valid) {
+        if (!$vatCheck) {
             $vat = '';
         }
 
@@ -158,9 +159,13 @@ class TeamleaderApi extends Component
 
         $countryCode = preg_replace('/[^A-Za-z]/', '', $vat);
         $vatNo = preg_replace('/[^0-9]/', '', $vat);
+        try {
+            $soap = new \SoapClient("http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl");
+            $check = $soap->checkVat(['countryCode' => $countryCode, 'vatNumber' => $vatNo]);
 
-        $soap = new \SoapClient("http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl");
-
-        return $soap->checkVat(['countryCode' => $countryCode, 'vatNumber' => $vatNo]);
+            return (bool)$check->valid;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }
