@@ -133,12 +133,17 @@ class TeamleaderApi extends Component
                                'email' => $order->email,
                            ],
                    ],
-                'primary_address' =>
+                'addresses' =>
                    [
-                       'line_1' => $billing->address1 . ' ' . $billing->address2,
-                       'postal_code' => $billing->zipCode,
-                       'city' => $billing->city,
-                       'country' => 'BE',
+                       [
+                           'type' => 'primary',
+                           'address' => [
+                               'line_1' => $billing->address1 . ' ' . $billing->address2,
+                               'postal_code' => $billing->zipCode,
+                               'city' => $billing->city,
+                               'country' => 'BE',
+                           ]
+                       ],
                    ],
             ];
 
