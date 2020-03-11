@@ -53,7 +53,21 @@ class Settings extends Model
      *
      * @var string
      */
-    public $redirectUri = '';
+    public $baseUrl = '';
+
+    /**
+     * Some field model attribute
+     *
+     * @var string
+     */
+    public $departmentId = '';
+
+    /**
+     * Some field model attribute
+     *
+     * @var string
+     */
+    public $taxRateId = '';
 
     // Public Methods
     // =========================================================================
@@ -73,7 +87,9 @@ class Settings extends Model
         return [
             ['clientId', 'string'],
             ['clientSecret', 'string'],
-            ['redirectUri', 'string'],
+            ['baseUrl', 'string'],
+            ['departmentId', 'string'],
+            ['taxRateId', 'string'],
         ];
     }
 }

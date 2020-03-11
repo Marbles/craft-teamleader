@@ -44,7 +44,7 @@
     {% if token is not empty %}
         <p>{{ "Connection is allready established"|t('teamleader') }}</p>
     {% else %}
-        <a href="https://app.teamleader.eu/oauth2/authorize?client_id={{ settings['clientId'] }}&response_type=code&redirect_uri={{ settings['redirectUri'] }}">{{ "Connect Teamleader"|t('teamleader') }}</a>
+        <a href="https://app.teamleader.eu/oauth2/authorize?client_id={{ settings['clientId'] }}&response_type=code&redirect_uri={{ settings['baseUrl'] }}/admin/teamleader/connect/integration" class="btn submit add icon">{{ "Connect Teamleader"|t('teamleader') }}</a>
     {% endif %}
     <p class="textline"></p>
 {% endset %}

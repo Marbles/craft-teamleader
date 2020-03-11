@@ -34,9 +34,26 @@
 }}
 
 {{ forms.textField({
-    label: 'Redirect Uri',
-    instructions: 'Put your teamleader redirect uri here.',
-    id: 'redirectUri',
-    name: 'redirectUri',
-    value: settings['redirectUri']})
+    label: 'Base Url',
+    instructions: 'Put your sites base url here. (http://example.com)',
+    id: 'baseUrl',
+    name: 'baseUrl',
+    value: settings['baseUrl']})
+}}
+
+{{ forms.textField({
+    label: 'Department Id',
+    instructions: 'Insert the department id from teamleader where the invoices should be registered',
+    id: 'departmentId',
+    name: 'departmentId',
+    value: settings['departmentId']})
+}}
+
+
+{{ forms.textField({
+    label: 'Tax Rate Id',
+    instructions: 'Insert the tax rate id you want to apply to your invoices',
+    id: 'taxRateId',
+    name: 'taxRateId',
+    value: settings['taxRateId']})
 }}

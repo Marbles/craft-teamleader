@@ -24,9 +24,16 @@
 
 return [
 
-    // This controls blah blah blah
+    // Teamleader integration clientId
     "clientId" => '',
-    "clientSecret" => '',
-    "redirectUri" => '',
 
+    // Teamleader integration clientSecret
+    "clientSecret" => '',
+
+    // Teamleader integration clientId
+    "baseUrl" => '',
+
+    "departmentId" => '',
+
+    "taxRateId" => '',
 ];

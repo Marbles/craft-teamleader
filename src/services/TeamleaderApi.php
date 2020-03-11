@@ -47,6 +47,7 @@ class TeamleaderApi extends Component
      */
     public function createInvoice(Order $order, $company)
     {
+        $settings = TeamleaderPlugin::$plugin->getSettings();
         $lineItems = [];
 
         foreach ($order->lineItems as $key => $value) {
@@ -58,7 +59,7 @@ class TeamleaderApi extends Component
                 "currency"=> "EUR",
                 "tax"=> "excluding"
               ],
-              "tax_rate_id"=> 'e566fc02-b956-0192-8246-f4d558fec381',
+              "tax_rate_id"=> $settings->taxRateId,
           ];
         }
 
@@ -70,7 +71,7 @@ class TeamleaderApi extends Component
                   "id"=> $company->id
                 ]
               ],
-              "department_id"=> "51ac87b0-0d87-0ea7-9f47-e45c4b25d3e4",
+              "department_id"=> $settings->departmentId,
               "payment_term"=> [
                 "type"=> "cash"
               ],

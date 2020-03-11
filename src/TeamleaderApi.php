@@ -105,7 +105,7 @@ class TeamleaderApi extends Plugin
         // Set connection variables
         self::$connection->setClientId($this->getSettings()->clientId);
         self::$connection->setClientSecret($this->getSettings()->clientSecret);
-        self::$connection->setRedirectUrl($this->getSettings()->redirectUri);
+        self::$connection->setRedirectUrl($this->getSettings()->baseUrl . '/admin/teamleader/connect/integration');
 
         self::$client = new \Teamleader\Client(self::$connection);
 
