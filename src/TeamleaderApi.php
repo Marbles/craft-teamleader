@@ -11,6 +11,7 @@
 namespace marbles\teamleader;
 
 use marbles\teamleader\services\TeamleaderApi as TeamleaderService;
+use marbles\teamleader\services\TeamleaderHandler;
 use marbles\teamleader\models\Settings;
 use marbles\teamleader\assetbundles\Teamleader\TeamleaderAsset;
 
@@ -100,7 +101,7 @@ class TeamleaderApi extends Plugin
     {
         parent::init();
         self::$plugin = $this;
-        self::$connection = new \Teamleader\Connection();
+        self::$connection = new \Teamleader\Connection(new TeamleaderHandler());
 
         // Set connection variables
         self::$connection->setClientId($this->getSettings()->clientId);

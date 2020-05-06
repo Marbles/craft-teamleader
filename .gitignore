@@ -11,6 +11,7 @@
 /node_modules/*
 /build/*
 /yarn-error.log
+/teamleader-cache
 
 # MISC FILES
 .cache
