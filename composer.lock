@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "472d9d28d3afdd98572a11c5b6912dc7",
+    "content-hash": "bb5e6b31253cf664388c60228558bebc",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -1322,16 +1322,16 @@
         },
         {
             "name": "janhenkes/teamleader-php-sdk",
-            "version": "dev-cache-errors",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kjellknapen/teamleader-php-sdk.git",
-                "reference": "91e2057b235acbdbb9b61137de7e642d989d36c5"
+                "url": "https://github.com/janhenkes/teamleader-php-sdk.git",
+                "reference": "c437ec3fef798dad214422101ebb69ee926eb79e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kjellknapen/teamleader-php-sdk/zipball/91e2057b235acbdbb9b61137de7e642d989d36c5",
-                "reference": "91e2057b235acbdbb9b61137de7e642d989d36c5",
+                "url": "https://api.github.com/repos/janhenkes/teamleader-php-sdk/zipball/c437ec3fef798dad214422101ebb69ee926eb79e",
+                "reference": "c437ec3fef798dad214422101ebb69ee926eb79e",
                 "shasum": ""
             },
             "require": {
@@ -1347,6 +1347,7 @@
                     "Teamleader\\": "src/Teamleader"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1361,12 +1362,13 @@
             "description": "Teamleader API v2 PHP SDK",
             "homepage": "https://github.com/janhenkes/teamleader-php-sdk",
             "keywords": [
-                "teamleader"
+                "Teamleader"
             ],
             "support": {
-                "source": "https://github.com/kjellknapen/teamleader-php-sdk/tree/cache-errors"
+                "issues": "https://github.com/janhenkes/teamleader-php-sdk/issues",
+                "source": "https://github.com/janhenkes/teamleader-php-sdk/tree/2.8.0"
             },
-            "time": "2021-03-22T09:08:13+00:00"
+            "time": "2021-02-18T13:14:01+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -5491,8 +5493,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "craftcms/cms": 5,
-        "janhenkes/teamleader-php-sdk": 20
+        "craftcms/cms": 5
     },
     "prefer-stable": false,
     "prefer-lowest": false,

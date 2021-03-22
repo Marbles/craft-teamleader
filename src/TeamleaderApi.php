@@ -22,7 +22,7 @@ use craft\events\PluginEvent;
 use craft\web\UrlManager;
 use craft\events\RegisterUrlRulesEvent;
 use craft\commerce\elements\Order;
-
+use marbles\teamleader\services\TeamleaderConnection;
 use yii\base\Event;
 
 /**
@@ -101,7 +101,7 @@ class TeamleaderApi extends Plugin
     {
         parent::init();
         self::$plugin = $this;
-        self::$connection = new \Teamleader\Connection(new TeamleaderHandler());
+        self::$connection = new TeamleaderConnection(new TeamleaderHandler());
 
         // Set connection variables
         self::$connection->setClientId($this->getSettings()->clientId);
