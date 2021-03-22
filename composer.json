@@ -23,8 +23,14 @@
     ],
     "require": {
         "craftcms/cms": "^3.0.0-RC1",
-        "janhenkes/teamleader-php-sdk": "^2.0"
+        "janhenkes/teamleader-php-sdk": "dev-cache-errors"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/kjellknapen/teamleader-php-sdk.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
           "marbles\\teamleader\\": "src/"

@@ -16,14 +16,19 @@ class TeamleaderHandler implements CacheHandlerInterface
             return null;
         }
 
-        return $this->maybe_unserialize(fread($handle, $fileSize));
+        $data = $this->maybe_unserialize(fread($handle, $fileSize));
+        if(!is_array($data) || $data['expires'] < time()) {
+            $this->forget($key);
+            return null;
+        }
+        return $data['value'];
     }
 
-    public function set($key, $value, $expiresAt)
+    public function set($key, $value, $expireInMinutes)
     {
         $my_file = $this->getFileName($key);
         $handle  = fopen($my_file, 'w');
-        fwrite($handle, $this->maybe_serialize($value));
+        fwrite($handle, $this->maybe_serialize([ 'value'=> $value, 'expires'=> time() + ( $expireInMinutes * 60)]));
     }
 
     public function forget($key)
@@ -34,7 +39,7 @@ class TeamleaderHandler implements CacheHandlerInterface
     private function getFileName($key)
     {
         $storagePath = Craft::$app->path->getStoragePath();
-        $dir = $storagePath . 'teamleader-cache/';
+        $dir = $storagePath . '/teamleader-cache/';
         if (!file_exists($dir)) {
             mkdir($dir);
         }
