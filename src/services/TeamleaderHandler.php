@@ -2,6 +2,7 @@
 
 namespace marbles\teamleader\services;
 
+use Craft;
 use Teamleader\Handlers\CacheHandlerInterface;
 
 class TeamleaderHandler implements CacheHandlerInterface
@@ -32,7 +33,7 @@ class TeamleaderHandler implements CacheHandlerInterface
 
     private function getFileName($key)
     {
-        $storagePath = craft()->path->getStoragePath();
+        $storagePath = Craft::$app->path->getStoragePath();
         $dir = $storagePath . 'teamleader-cache/';
         if (!file_exists($dir)) {
             mkdir($dir);
