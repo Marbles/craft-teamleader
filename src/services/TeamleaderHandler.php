@@ -32,7 +32,8 @@ class TeamleaderHandler implements CacheHandlerInterface
 
     private function getFileName($key)
     {
-        $dir = str_replace('src/services', '', __DIR__) . 'teamleader-cache/';
+        $storagePath = craft()->path->getStoragePath();
+        $dir = $storagePath . 'teamleader-cache/';
         if (!file_exists($dir)) {
             mkdir($dir);
         }
